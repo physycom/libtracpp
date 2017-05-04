@@ -7,7 +7,7 @@
 #define GEODESIC_DEG_TO_M  111070.4   // conversion [deg] -> [meter] on equatorial circle */
 
 template<class T>
-cov_dist_ij(const std::vector<T> &data, int i, int j){
+double cov_dist_ij(const std::vector<T> &data, int i, int j){
   double dist = 0, dx, dy;
   for(int k=i; k<=j; ++k){
     dx = GEODESIC_DEG_TO_M*cos(data[k].lat*DEG_TO_RAD)*(data[k+1].lon - data[k].lon);
@@ -28,14 +28,14 @@ public:
     max_cov_dist = MAX_COV_DIST;
     min_cov_dist = MIN_COV_DIST;
     max_ortho_dist = MAX_DIST_ORTHO;
-    min_ortho_dist = MIN_DIST_ORTHO
+    min_ortho_dist = MIN_DIST_ORTHO;
   }
 
   rdp_algo(double _max_cov_dist, double _min_cov_dist, double _max_ortho_dist, double _min_ortho_dist) {
     max_cov_dist   = _max_cov_dist;
     min_cov_dist   = _min_cov_dist;
     max_ortho_dist = _max_ortho_dist;
-    min_ortho_dist = _min_ortho_dist
+    min_ortho_dist = _min_ortho_dist;
   }
 
   template<class T>

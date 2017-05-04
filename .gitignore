@@ -27,3 +27,9 @@
 *.exe
 *.out
 *.app
+
+# Build results
+build/
+
+# MAC OS stuff
+.DS_Store
