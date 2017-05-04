@@ -33,3 +33,8 @@ build/
 
 # MAC OS stuff
 .DS_Store
+
+# test files
+*.json
+test/
+!test/test.cpp

@@ -115,14 +115,14 @@ int main(int argc, char **argv){
   rdp_algo rdpalgo;
 
   // Converting json to std container
-  auto trip_ = deserialize<gnsspoint>(jin);
+  auto trip = deserialize<gnsspoint>(jin);
 
   // Reduce with rdp
-  auto rdp_ = rdpalgo.reduce(trip_);
+  auto rdp = rdpalgo.reduce(trip);
 
   // Convert std container to json and dump
-  auto jrdp = serialize(rdp_);
-  ofstream out_(input_name.substr(0, input_name.size() - 5) + "_reduced_.json");
+  auto jrdp = serialize(rdp);
+  ofstream out_(input_name.substr(0, input_name.size() - 5) + "_reduced.json");
   out_ << pretty_print(jrdp) << endl;
   out_.close();
 
