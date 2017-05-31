@@ -89,7 +89,7 @@ public:
     int index1 = 0, index2 = 0;
     for (size_t i = 1; i <= data.size() - 1; ++i) {
       if (status[i]) {
-        index2 = i;
+        index2 = int(i);
         double dist = cov_dist_ij(data, index1, index2);
         if (dist > max_cov_dist) {
           double delta = (dist) / int((dist / (max_cov_dist)+1)) + 1.;
@@ -117,7 +117,7 @@ public:
       memset(status, 1, data.size() * sizeof(bool));
 
       try {
-        rdp_engine_recursive(status, data, 0, data.size() - 1);
+        rdp_engine_recursive(status, data, 0, int(data.size() - 1) );
       }
       catch (...) {
         reduced = data;
