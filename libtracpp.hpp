@@ -1,7 +1,7 @@
-#define MAX_DIST_ORTHO           5         // distanza massima ortogonale
-#define MIN_DIST_ORTHO           10000     // distanza minima ortogonale
-#define MAX_COV_DIST             15       // d max in metri tra 2 punti
-#define MIN_COV_DIST             50       // d min in metri tra 2 punti
+#define MAX_DIST_ORTHO           5         
+#define MIN_DIST_ORTHO           10000     
+#define MAX_COV_DIST             15        
+#define MIN_COV_DIST             50        
 #define MIN_RECORD_PER_TRIP      5
 #define DEG_TO_RAD               1.745329e-2
 #define GEODESIC_DEG_TO_M        111070.4   // conversion [deg] -> [meter] on equatorial circle */
@@ -19,10 +19,10 @@ double cov_dist_ij(const std::vector<T> &data, int i, int j) {
 
 class rdp_algo {
 public:
-  double max_cov_dist;     /* meters */
-  double min_cov_dist;     /* meters */
-  double max_ortho_dist;   /* meters */
-  double min_ortho_dist;   /* meters */
+  double max_cov_dist;            // d max tra punti successivi che innesca restore_points [meters]     
+  double min_cov_dist;            // d minima tra punti successivi per cui l'algoritmo non viene lanciato [meters] 
+  double max_ortho_dist;          // distanza massima ortogonale per selezionare un punto [meters]
+  double min_ortho_dist;          // distanza minima ortogonale (deprecated) [meters]             
   size_t min_record_per_trip;
 
   rdp_algo() {
@@ -44,7 +44,7 @@ public:
   template<class T>
   void rdp_engine_recursive(bool * status, const std::vector<T> &data, int index1, int index2) {
 
-    if (cov_dist_ij(data, index1, index2) < min_cov_dist) { //distanza percorsa < distanza_tolleranza
+    if (cov_dist_ij(data, index1, index2) < min_cov_dist) {      //distanza percorsa < distanza_tolleranza
       for (int i = index1 + 1; i < index2; ++i) status[i] = false;
       return;
     }
