@@ -7,7 +7,7 @@
 #define GEODESIC_DEG_TO_M        111070.4   // conversion [deg] -> [meter] on equatorial circle */
 
 template<class T>
-double cov_dist_ij(const std::vector<T> &data, int i, int j) 
+double cov_dist_ij(const std::vector<T> &data, int i, int j) // distance from index=i to index=j
 {
   double dist = 0, dx, dy;
   for (int k = i; k < j; ++k) 
