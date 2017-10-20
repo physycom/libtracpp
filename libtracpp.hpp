@@ -7,6 +7,24 @@
 #define GEODESIC_DEG_TO_M        111070.4   // conversion [deg] -> [meter] on equatorial circle */
 
 template<class T>
+T center_of_mass(const std::vector<T> &data)
+{
+  // maybe add some safety on data.size() throwing stuff?
+  T com;
+  com.lat = 0.0;
+  com.lon = 0.0;
+  for (const auto & record : data)
+  {
+    com.lat += record.lat;
+    com.lon += record.lon;
+  }
+  com.lat /= (double)data.size();
+  com.lon /= (double)data.size();
+
+  return com;
+}
+
+template<class T>
 double cov_dist_ij(const std::vector<T> &data, int i, int j) // distance from index=i to index=j
 {
   double dist = 0, dx, dy;
