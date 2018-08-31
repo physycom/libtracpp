@@ -23,7 +23,7 @@ public:
   gnsspoint(const json &j){
     lat = j["lat"].as<double>();
     lon = j["lon"].as<double>();
-    timestamp = j["timestamp"].as<int>();    
+    timestamp = j["timestamp"].as<int>();
   }
 
   // json converter
@@ -36,7 +36,7 @@ public:
   }
 };
 
-// auxiliary function to 
+// auxiliary function to
 // (de)serialize json into class
 // (pretty unsafe)
 template<class T>
@@ -64,7 +64,7 @@ json serialize(const vector<T> &vec, char mode = 'a'){
     j = json::array();
     for(const auto &r : vec){
       j.add(r.to_json());
-    } 
+    }
   }
   else if ( mode ==  'o'){
     size_t cnt = 0;
@@ -102,16 +102,12 @@ int main(int argc, char **argv){
     cerr << "JSON PARSE EXC : " << e.what() << endl;
     exit(-1);
   }
-  catch (json_exception_1<runtime_error> &e) {
-    cerr << "JSON FILE EXC : " << e.what() << endl;
-    exit(-1);
-  }
   catch (std::exception &e) {
     cerr << "GENERIC EXC : " << e.what() << endl;
     exit(-1);
   }
 
-  // instantiate rdp object 
+  // instantiate rdp object
   rdp_algo rdpalgo;
 
   // Converting json to std container
